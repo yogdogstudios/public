@@ -10,12 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
         elements.forEach(element => {
             element.setAttribute('color-mode', newMode);
         });
-
-        // Find the element with the class switch_circle and toggle the class is-dark
-        const switchCircleElement = document.querySelector('.switch_circle');
-        if (switchCircleElement) {
-            switchCircleElement.classList.toggle('is-dark');
-        }
     }
 
     // Add an event listener to the element with the attribute yd-colormode="toggle"
