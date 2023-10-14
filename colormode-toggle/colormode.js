@@ -12,9 +12,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Add an event listener to the element with the attribute yd-colormode="toggle"
-    const toggleElement = document.querySelector('[yd-colormode="toggle"]');
-    if (toggleElement) {
-        toggleElement.addEventListener('click', toggleColorMode);
-    }
+    // Add event listeners to all elements with the attribute yd-colormode="toggle"
+    const toggleElements = document.querySelectorAll('[yd-colormode="toggle"]');
+    toggleElements.forEach(element => {
+        element.addEventListener('click', toggleColorMode);
+    });
 });
