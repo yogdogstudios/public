@@ -11,15 +11,11 @@ document.addEventListener('DOMContentLoaded', function() {
             element.setAttribute('color-mode', newMode);
         });
 
-        // Modify elements with yd-colormode=circle based on the new mode
-        const circleElements = document.querySelectorAll('[yd-colormode="circle"]');
-        circleElements.forEach(element => {
-            if (newMode === 'dark') {
-                element.style.marginLeft = 'auto';
-            } else {
-                element.style.marginLeft = ''; // This removes the margin-left style
-            }
-        });
+        // Find the element with the class switch_circle and toggle the class is-dark
+        const switchCircleElement = document.querySelector('.switch_circle');
+        if (switchCircleElement) {
+            switchCircleElement.classList.toggle('is-dark');
+        }
     }
 
     // Add an event listener to the element with the attribute yd-colormode="toggle"
