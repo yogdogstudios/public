@@ -10,13 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
         elements.forEach(element => {
             element.setAttribute('color-mode', newMode);
         });
-
-        // Check new mode and add/remove is-dark class for the toggleElement
-        if (newMode === 'dark') {
-            toggleElement.classList.add('is-dark');
-        } else {
-            toggleElement.classList.remove('is-dark');
-        }
     }
 
     // Add an event listener to the element with the attribute yd-colormode="toggle"
