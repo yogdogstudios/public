@@ -10,6 +10,16 @@ document.addEventListener('DOMContentLoaded', function() {
         elements.forEach(element => {
             element.setAttribute('color-mode', newMode);
         });
+
+        // Modify elements with yd-colormode=circle based on the new mode
+        const circleElements = document.querySelectorAll('[yd-colormode="circle"]');
+        circleElements.forEach(element => {
+            if (newMode === 'dark') {
+                element.style.marginLeft = 'auto';
+            } else {
+                element.style.marginLeft = ''; // This removes the margin-left style
+            }
+        });
     }
 
     // Add an event listener to the element with the attribute yd-colormode="toggle"
