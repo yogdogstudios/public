@@ -6,21 +6,22 @@ document.addEventListener('DOMContentLoaded', function() {
     if (gridSections.length > 0) {
         // Determine the content-position of the first .grid_section
         const firstPosition = gridSections[0].getAttribute('content-position');
-        let newPosition;
+        let targetIndices;
 
-        // Determine the new position value based on the first .grid_section's content-position
+        // Determine which indices to target based on the first .grid_section's content-position
         if (firstPosition === 'left') {
-            newPosition = 'right';
+            // For 0-based index, even elements are 1, 3, 5,... (odd indices when 1-based)
+            targetIndices = index => (index + 1) % 2 === 0;
         } else if (firstPosition === 'right') {
-            newPosition = 'left';
+            // For 0-based index, odd elements are 0, 2, 4,... (even indices when 1-based)
+            targetIndices = index => index % 2 === 0;
         }
 
-        // If a new position was determined, apply it to even .grid_section elements
-        if (newPosition) {
+        // If targetIndices was determined, apply the content-position attribute
+        if (targetIndices) {
             gridSections.forEach((section, index) => {
-                // Remember, index is 0-based. Thus, even items are at odd indices: 1, 3, 5, ...
-                if ((index + 1) % 2 === 0) {
-                    section.setAttribute('content-position', newPosition);
+                if (targetIndices(index)) {
+                    section.setAttribute('content-position', 'right');
                 }
             });
         }
