@@ -1,30 +1,20 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Get all elements with the class .grid_section
+    // Get all elements with the class .grid_section or .grid_section and .is-big-image
     const gridSections = document.querySelectorAll('.grid_section');
+    
+    console.log(gridSections);
 
-    // Check if there are any .grid_section elements before proceeding
+    // Check if there are any matched elements before proceeding
     if (gridSections.length > 0) {
-        // Determine the content-position of the first .grid_section
+        // Determine the content-position of the first matched element
         const firstPosition = gridSections[0].getAttribute('content-position');
-        let targetIndices;
+        let nextPosition = firstPosition === 'left' ? 'right' : 'left'; 
 
-        // Determine which indices to target based on the first .grid_section's content-position
-        if (firstPosition === 'left') {
-            // For 0-based index, even elements are 1, 3, 5,... (odd indices when 1-based)
-            targetIndices = index => (index + 1) % 2 === 0;
-        } else if (firstPosition === 'right') {
-            // For 0-based index, odd elements are 0, 2, 4,... (even indices when 1-based)
-            targetIndices = index => index % 2 === 0;
+        // Loop through all grid sections starting from the second element
+        for (let i = 1; i < gridSections.length; i++) {
+            gridSections[i].setAttribute('content-position', nextPosition);
+            // Alternate the value for the next iteration
+            nextPosition = nextPosition === 'left' ? 'right' : 'left';
         }
-
-        // If targetIndices was determined, apply the content-position attribute
-        if (targetIndices) {
-            gridSections.forEach((section, index) => {
-                if (targetIndices(index)) {
-                    section.setAttribute('content-position', 'right');
-                }
-            });
-        }
-        console.log('Script loaded!')
     }
 });
